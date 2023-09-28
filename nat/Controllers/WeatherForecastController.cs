@@ -30,5 +30,14 @@ namespace nat.Controllers
             })
             .ToArray();
         }
+        [HttpPost(Name = "AddNewSummary")]
+        public string[] AddNewSummary(string newSummary)
+        {
+            _logger.LogError("New method was called");
+            var list = Summaries.ToList();
+            list.Add(newSummary);
+            return list.ToArray();
+            
+        }
     }
 }
