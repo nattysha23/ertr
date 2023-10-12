@@ -2,7 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using nat.Database;
 using NLog;
 using NLog.Web;
-//using static nat.ServiceExtensions.ServiceExtensions;
+using static nat.ServiceExtensions.ServiceExtensions;
+
+
+//using nat.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -23,7 +26,7 @@ try
     builder.Services.AddDbContext<StudentDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-    //builder.Services.AddServices();
+    builder.Services.AddServices();
 
     var app = builder.Build();
 
